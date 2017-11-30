@@ -16,7 +16,7 @@ myInterface.transmitSpeed = 0
 Scenario.nrofHostGroups = 1
 
 Group1.groupID = n
-Group1.nrofHosts = 2
+Group1.nrofHosts = 10
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = MapRoomMovement

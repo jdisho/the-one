@@ -1,7 +1,3 @@
-/*
- * Copyright 2010 Aalto University, ComNet
- * Released under GPLv3. See LICENSE.txt for details.
- */
 package movement;
 
 import java.util.List;
@@ -20,7 +16,7 @@ import core.Settings;
  * different type of routes; see {@link #ROUTE_TYPE_S}.
  */
 public class MapRouteMovement extends MapBasedMovement implements
-	SwitchableMovement {
+		SwitchableMovement {
 
 	/** Per node group setting used for selecting a route file ({@value}) */
 	public static final String ROUTE_FILE_S = "routeFile";
@@ -38,17 +34,21 @@ public class MapRouteMovement extends MapBasedMovement implements
 	public static final String ROUTE_FIRST_STOP_S = "routeFirstStop";
 
 	/** the Dijkstra shortest path finder */
-	public DijkstraPathFinder pathFinder;
+	protected DijkstraPathFinder pathFinder;
 
 	/** Prototype's reference to all routes read for the group */
-	public List<MapRoute> allRoutes = null;
+	protected List<MapRoute> allRoutes = null;
 	/** next route's index to give by prototype */
-	public Integer nextRouteIndex = null;
+	protected Integer nextRouteIndex = null;
 	/** Index of the first stop for a group of nodes (or -1 for random) */
-	public int firstStopIndex = -1;
+	protected int firstStopIndex = -1;
 
 	/** Route of the movement model's instance */
-	private MapRoute route;
+	protected MapRoute route;
+
+	protected String routeFileName;
+
+	protected int routeType;
 
 	/**
 	 * Creates a new movement model based on a Settings object's settings.
@@ -56,24 +56,11 @@ public class MapRouteMovement extends MapBasedMovement implements
 	 */
 	public MapRouteMovement(Settings settings) {
 		super(settings);
-		String fileName = settings.getSetting(ROUTE_FILE_S);
-		int type = settings.getInt(ROUTE_TYPE_S);
-		allRoutes = MapRoute.readRoutes(fileName, type, getMap());
-		nextRouteIndex = 0;
+		routeFileName = settings.getSetting(ROUTE_FILE_S);
+		routeType = settings.getInt(ROUTE_TYPE_S);
+		allRoutes = MapRoute.readRoutes(routeFileName, routeType, getMap());
 		pathFinder = new DijkstraPathFinder(getOkMapNodeTypes());
-		this.route = this.allRoutes.get(this.nextRouteIndex).replicate();
-		if (this.nextRouteIndex >= this.allRoutes.size()) {
-			this.nextRouteIndex = 0;
-		}
-
-		if (settings.contains(ROUTE_FIRST_STOP_S)) {
-			this.firstStopIndex = settings.getInt(ROUTE_FIRST_STOP_S);
-			if (this.firstStopIndex >= this.route.getNrofStops()) {
-				throw new SettingsError("Too high first stop's index (" +
-						this.firstStopIndex + ") for route with only " +
-						this.route.getNrofStops() + " stops");
-			}
-		}
+		initFirstIndex(settings);
 	}
 
 	/**
@@ -102,6 +89,23 @@ public class MapRouteMovement extends MapBasedMovement implements
 		}
 	}
 
+	protected void initFirstIndex(Settings settings) {
+		nextRouteIndex = 0;
+		this.route = this.allRoutes.get(this.nextRouteIndex).replicate();
+		if (this.nextRouteIndex >= this.allRoutes.size()) {
+			this.nextRouteIndex = 0;
+		}
+
+		if (settings.contains(ROUTE_FIRST_STOP_S)) {
+			this.firstStopIndex = settings.getInt(ROUTE_FIRST_STOP_S);
+			if (this.firstStopIndex >= this.route.getNrofStops()) {
+				throw new SettingsError("Too high first stop's index (" +
+						this.firstStopIndex + ") for route with only " +
+						this.route.getNrofStops() + " stops");
+			}
+		}
+	}
+
 	@Override
 	public Path getPath() {
 		Path p = new Path(generateSpeed());
@@ -111,7 +115,7 @@ public class MapRouteMovement extends MapBasedMovement implements
 
 		// this assertion should never fire if the map is checked in read phase
 		assert nodePath.size() > 0 : "No path from " + lastMapNode + " to " +
-			to + ". The simulation map isn't fully connected";
+				to + ". The simulation map isn't fully connected";
 
 		for (MapNode node : nodePath) { // create a Path from the shortest path
 			p.addWaypoint(node.getLocation());
