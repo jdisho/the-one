@@ -4,7 +4,7 @@ Scenario.name = MapRouteMovement
 Scenario.endTime = 60000
 Scenario.updateInterval = 0.05
 Scenario.simulateConnections = false
-MovementModel.worldSize = 250,250
+MovementModel.worldSize = 500,500
 Events.nrof = 0
 
 # Communication Interface
@@ -50,29 +50,13 @@ MapBasedMovement.mapFile1 = data/TUM/tum.wkt
 MapRoomMovement.routeFile = data/TUM/tum.wkt
 MapRoomMovement.routeType = 1
 MapRoomMovement.roomCapacityOther = 50
-MapRoomMovement.roomCount = 21
+MapRoomMovement.roomCount = 9
 # id, point x, point y, capacity, room_type (1 = lecture room, 2 = other, 3 = entry/exit, 4 = magistrale, 5 = mensa), probability
-MapRoomMovement.room1 = 1, 248.22498023681035, 134.07123072118927, 400, 1
-MapRoomMovement.room2 = 2, 225.12582498103558, 104.04233471619116, 101, 1
-MapRoomMovement.room3 = 3, 194.08076941626237, 112.78249675582326, 101, 1
-MapRoomMovement.room4 = 4, 131.10611782635593, 127.88558993669133, 50, 1
-MapRoomMovement.room5 = 5, 116.8912097672152, 167.03893318730695, 45, 1
-MapRoomMovement.room6 = 6, 82.47616920297982, 176.2661542081527, 40, 1
-MapRoomMovement.room7 = 7, 187.716365711004, 163.54755226050048, 30, 1
-MapRoomMovement.room8 = 8, 150.80748162762112, 160.5549400375235, 25, 1
-MapRoomMovement.room9 = 9, 219.14735115437747, 145.97647870814157, 500, 3, 0.8
-MapRoomMovement.room10 = 10, 81.44802617473992, 161.10084764428478, 500, 3, 0.2
-MapRoomMovement.room11 = 11, 175.83070484433182, 138.89348118274083, 20, 4
-MapRoomMovement.room12 = 12, 144.90704520690292, 144.62932127678005, 20, 4
-MapRoomMovement.room13 = 13, 168.34917428688934, 139.89101859039982, 20, 4
-MapRoomMovement.room14 = 14, 161.1170280813616, 141.63670905380306, 20, 4
-MapRoomMovement.room15 = 15, 129.35994038925188, 147.8722311622861, 20, 4
-MapRoomMovement.room16 = 16, 252.34538999315674, 185.50870852258083, 250, 5
-MapRoomMovement.room17 = 17, 152.52043696657879, 142.9887319419712, 20, 4
-MapRoomMovement.room18 = 18, 136.58751144109135, 146.26491906123834, 20, 4
-MapRoomMovement.room19 = 19, 177.7798828101722, 147.46382442106167, 20, 4
-MapRoomMovement.room20 = 20, 170.33918494998792, 148.66815842716014, 20, 4
-MapRoomMovement.room21 = 21, 162.78165163592402, 150.23237380460546, 20, 4
+# Add points on a map where each point is a room type
+# Create rooms in the settings file like this:
+# MapRoomMovement.room1 = 1, -39.63297225910418, 332.57895227888093, 400, 3, 0.8
+# The rooms that represent the entrance or the exit should have a probability
+# Add rooms for each room type
 
 # Reports
 Report.nrofReports = 0
