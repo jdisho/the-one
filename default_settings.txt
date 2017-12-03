@@ -50,13 +50,21 @@ MapBasedMovement.mapFile1 = data/TUM/tum.wkt
 MapRoomMovement.routeFile = data/TUM/tum.wkt
 MapRoomMovement.routeType = 1
 MapRoomMovement.roomCapacityOther = 50
-MapRoomMovement.roomCount = 9
+MapRoomMovement.roomCount = 8
+
 # id, point x, point y, capacity, room_type (1 = lecture room, 2 = other, 3 = entry/exit, 4 = magistrale, 5 = mensa), probability
 # Add points on a map where each point is a room type
-# Create rooms in the settings file like this:
-# MapRoomMovement.room1 = 1, -39.63297225910418, 332.57895227888093, 400, 3, 0.8
 # The rooms that represent the entrance or the exit should have a probability
 # Add rooms for each room type
+# Create rooms in the settings file like this:
+MapRoomMovement.room1 = 1, -39.63297225910418, 332.57895227888093, 400, 3, 0.8
+MapRoomMovement.room2 = 2, -39.27938936321818, 389.6570013127295, 400, 5
+MapRoomMovement.room3 = 3, -116.9223147124227, 266.01100035448724, 400, 4
+MapRoomMovement.room4 = 4, -96.36913651993245, 289.98970824572586, 400, 2
+MapRoomMovement.room5 = 5, -212.42757207426604, 288.5127588466279, 400, 1
+MapRoomMovement.room6 = 6, -212.42757207426604, 288.5127588466279, 400, 1
+MapRoomMovement.room7 = 7, -212.42757207426604, 288.5127588466279, 400, 1
+MapRoomMovement.room8 = 8, -212.42757207426604, 288.5127588466279, 400, 1
 
 # Reports
 Report.nrofReports = 0
