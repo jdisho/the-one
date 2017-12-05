@@ -9,7 +9,7 @@ Events.nrof = 0
 
 # Communication Interface
 myInterface.type = SimpleBroadcastInterface
-myInterface.transmitRange = 50
+myInterface.transmitRange = 10
 myInterface.transmitSpeed = 1
 
 # Groups
