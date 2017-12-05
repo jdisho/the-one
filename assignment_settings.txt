@@ -1,0 +1,119 @@
+# Settings for map route based movement in a triangle.
+
+Scenario.name = MapRouteMovement
+Scenario.endTime = 60000
+Scenario.updateInterval = 0.05
+Scenario.simulateConnections = false
+MovementModel.worldSize = 500,500
+Events.nrof = 0
+
+# Communication Interface
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 0
+myInterface.transmitSpeed = 0
+
+# Groups
+Scenario.nrofHostGroups = 1
+
+Group1.groupID = f
+Group1.nrofHosts = [50;100;150;200;500]
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.movementModel = MapRoomMovement
+Group1.router = PassiveRouter
+
+Group1.averageCoursesPerDaySetting = 2
+Group1.scheduleTime = 7200, 14400, 21600, 28800, 36000, 43200, 50400
+Group1.chanceForUbahn = 0.9
+Group1.lectureParticipationChance = 0.75
+Group1.startPeakEnterTimeDifference = 600
+Group1.enterLectureStddev = 1800
+Group1.exitLectureStddev = 600
+Group1.endEnterLectureDifference = 1200
+Group1.enterChanceWithoutSchedule = 0.9
+Group1.enterStartTime = 3600
+Group1.enterEndTime = 21600
+Group1.exitStartTime = 28800
+Group1.exitEndTime = 50400
+Group1.enterExitStddev = 4000
+Group1.timeIntervalsPerMinute = 60
+
+Group1.lunchTime = 19800, 28800
+Group1.lunchTimeLengthMean = 2000
+Group1.lunchTimeLengthStddev = 600
+Group1.ChanceForMensa = 0.7
+
+
+## Map based movement -movement model specific settings
+MapBasedMovement.nrofMapFiles = 1
+MapBasedMovement.mapFile1 = data/TUM/tum.wkt
+MapRoomMovement.routeFile = data/TUM/tum.wkt
+MapRoomMovement.routeType = 1
+MapRoomMovement.roomCapacityOther = 50
+MapRoomMovement.roomCount = 31
+
+# id, point x, point y, capacity, room_type (1 = lecture room, 2 = other, 3 = entry/exit, 4 = magistrale, 5 = mensa), probability
+# Add points on a map where each point is a room type
+# The rooms that represent the entrance or the exit should have a probability
+# Add rooms for each room type
+# Create rooms in the settings file like this:
+
+# entry/exit spots (rooms)
+MapRoomMovement.room1 = 1, -39.63297225910418, 332.57895227888093, 400, 3, 0.8
+MapRoomMovement.room2 = 1, -250.86568334719317, 272.57837201529605, 400, 3, 0.2
+
+# mensa
+MapRoomMovement.room3 = 2, -39.27938936321818, 389.6570013127295, 400, 5
+
+# magistrale spots (rooms)
+MapRoomMovement.room4 = 3, -96.36913651993245, 289.98970824572586, 5, 4
+MapRoomMovement.room5 = 3, -148.50917370993943, 286.8992847131595, 5, 4
+MapRoomMovement.room6 = 3, -166.0091623883279, 285.6581507643376, 5, 4
+MapRoomMovement.room7 = 3, -183.13681088206977, 285.03758378992666, 5, 4
+MapRoomMovement.room8 = 3, -130.4432074407387, 274.6022791733877, 5, 4
+MapRoomMovement.room9 = 3, -95.02483217413442, 275.1082559629106, 5, 4
+MapRoomMovement.room10 = 3, -111.72206622839072, 274.0963023838648, 5, 4
+MapRoomMovement.room11 = 3, -56.821485982968284, 287.0296654825943, 5, 4
+MapRoomMovement.room12 = 3, -55.05266580182389, 261.44688264579185, 5, 4
+
+# library
+MapRoomMovement.room13 = 4, -187.70414885516846, 271.17631807924465, 400, 2
+
+MapRoomMovement.room14 = 5, -177.17630274612785, 290.61234166516584, 40, 1
+MapRoomMovement.room15 = 6, -156.20420419263507, 291.7397071135648, 40, 1
+MapRoomMovement.room16 = 7, -142.3534271546858, 292.63692745536594, 40, 1
+MapRoomMovement.room17 = 8, -190.58361457500104, 290.25034637497856, 40, 1
+MapRoomMovement.room18 = 8, -212.42757207426604, 288.5127588466279, 40, 1
+MapRoomMovement.room19 = 8, -81.2109362906422, 263.0779749184442, 40, 1
+MapRoomMovement.room20 = 8, -116.9223147124227, 266.01100035448724, 40, 1
+MapRoomMovement.room21 = 8, -152.89037654928066, 269.15106924500657, 40, 1
+MapRoomMovement.room22 = 8, 118.58285207652821, 300.83721895842916, 40, 1
+MapRoomMovement.room23 = 8, 83.75663347258639, 299.69537572551303, 40, 1
+MapRoomMovement.room24 = 8, 104.8359996874182, 264.48274338292936, 40, 1
+MapRoomMovement.room25 = 8, 137.5670280819482, 263.1183511243828, 40, 1
+MapRoomMovement.room26 = 8, -101.35357804376883, 257.44477431988537, 40, 1
+MapRoomMovement.room27 = 8, -41.391292484705104, 274.6022791733877, 400, 1
+MapRoomMovement.room28 = 8, -133.4790681778762, 258.41102190865433, 40, 1
+MapRoomMovement.room29 = 8, -56.34318270741613, 255.53942981947625, 200, 1
+MapRoomMovement.room30 = 8, -69.72599269798852, 255.88113796103974, 200, 1
+MapRoomMovement.room31 = 8, -133.4790681778762, 258.41102190865433, 40, 1
+
+# Reports
+Report.nrofReports = 5
+Report.report1 = NodeDensityReport
+Report.reportDir = [reports/tum_reports/reports50;reports/tum_reports/reports100;reports/tum_reports/reports150;reports/tum_reports/reports200;reports/tum_reports/reports500]
+
+NodeDensityReport.sampleInterval = 10
+NodeDensityReport.outputGnuplot = true
+NodeDensityReport.xCount = 50
+NodeDensityReport.yCount = 50
+NodeDensityReport.onlyAverage = true
+
+Report.report2 = TotalEncountersReport
+
+Report.report3 = UniqueEncountersReport
+
+Report.report4= EncountersVSUniqueEncountersReport
+
+Report.report5=FlightLengthReport
+
