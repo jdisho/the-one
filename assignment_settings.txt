@@ -2,15 +2,15 @@
 
 Scenario.name = MapRouteMovement
 Scenario.endTime = 60000
-Scenario.updateInterval = 0.05
-Scenario.simulateConnections = false
+Scenario.updateInterval = 1
+Scenario.simulateConnections = true
 MovementModel.worldSize = 500,500
 Events.nrof = 0
 
 # Communication Interface
 myInterface.type = SimpleBroadcastInterface
-myInterface.transmitRange = 0
-myInterface.transmitSpeed = 0
+myInterface.transmitRange = 50
+myInterface.transmitSpeed = 1
 
 # Groups
 Scenario.nrofHostGroups = 1
